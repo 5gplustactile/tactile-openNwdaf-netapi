@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.4 on darwin)" generated="20230804 11:29:22.099" rpa="false" schemaversion="3">
+<suite id="s1" name="Analytics" source="/Users/hib0005/API_NWDAF/tests/features/Analytics_Info/analytics.robot">
+<test id="s1-t1" name="Get_Analytics_LOAD_LEVEL_INFORMATION_DATES" line="12">
+<kw name="Get Endpoint From Dict" library="helpers">
+<var>${params}</var>
+<arg>event=LOAD_LEVEL_INFORMATION</arg>
+<arg>ana_req={"startTs": "2023-06-01T00:00:00.000Z", "endTs": "2023-06-30T00:00:00.000Z"}</arg>
+<msg timestamp="20230804 11:29:22.553" level="INFO">${params} = /nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%...</msg>
+<status status="PASS" starttime="20230804 11:29:22.552" endtime="20230804 11:29:22.554"/>
+</kw>
+<kw name="Get Request Analytics" library="basicRequests">
+<var>${resp}</var>
+<arg>${params}</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>apisession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230804 11:29:22.558" level="INFO">Creating Session using : alias=apisession, url=http://localhost:8080, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230804 11:29:22.557" endtime="20230804 11:29:22.558"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>apisession</arg>
+<arg>${endpoint}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230804 11:29:22.619" level="INFO">GET Request : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%7D 
+ path_url=/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%7D 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230804 11:29:22.620" level="INFO">GET Response : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%7D 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.25.1', 'Date': 'Fri, 04 Aug 2023 09:29:22 GMT', 'Content-Type': 'application/json', 'Content-Length': '359', 'Connection': 'keep-alive'} 
+ body={"start": "2023-08-04T09:29:22.611000Z", "expiry": "2023-08-04T09:29:22.611000Z", "timeStampGen": "2023-08-04T09:29:22.611000Z", "sliceLoadLevelInfos": [{"loadLevelInformation": 10, "snssais": [{"sst": 100, "sd": "abcdef"}, {"sst": 102, "sd": "abcdef"}]}, {"loadLevelInformation": 10, "snssais": [{"sst": 101, "sd": "abcdef"}, {"sst": 103, "sd": "abcdef"}]}]} 
+ </msg>
+<msg timestamp="20230804 11:29:22.620" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230804 11:29:22.559" endtime="20230804 11:29:22.620"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="PASS" starttime="20230804 11:29:22.620" endtime="20230804 11:29:22.620"/>
+</return>
+<msg timestamp="20230804 11:29:22.621" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230804 11:29:22.557" endtime="20230804 11:29:22.621"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230804 11:29:22.623" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20230804 11:29:22.622" endtime="20230804 11:29:22.623"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230804 11:29:22.627" endtime="20230804 11:29:22.628"/>
+</kw>
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${resp.json()["sliceLoadLevelInfos"]}</arg>
+<arg>2</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<msg timestamp="20230804 11:29:22.636" level="INFO">Length is 2</msg>
+<status status="PASS" starttime="20230804 11:29:22.633" endtime="20230804 11:29:22.637"/>
+</kw>
+<tag>Get</tag>
+<status status="PASS" starttime="20230804 11:29:22.550" endtime="20230804 11:29:22.639"/>
+</test>
+<test id="s1-t2" name="Get_Analytics_LOAD_LEVEL_INFORMATION_DATES_No_Content" line="23">
+<kw name="Get Endpoint From Dict" library="helpers">
+<var>${params}</var>
+<arg>event=LOAD_LEVEL_INFORMATION</arg>
+<arg>ana_req={"startTs": "2023-06-03T00:00:00.000Z", "endTs": "2023-06-15T00:00:00.000Z"}</arg>
+<msg timestamp="20230804 11:29:22.646" level="INFO">${params} = /nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-03T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-15T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%...</msg>
+<status status="PASS" starttime="20230804 11:29:22.646" endtime="20230804 11:29:22.647"/>
+</kw>
+<kw name="Get Request Analytics" library="basicRequests">
+<var>${resp}</var>
+<arg>${params}</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>apisession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230804 11:29:22.653" level="INFO">Creating Session using : alias=apisession, url=http://localhost:8080, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230804 11:29:22.652" endtime="20230804 11:29:22.653"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>apisession</arg>
+<arg>${endpoint}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230804 11:29:22.670" level="INFO">GET Request : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-03T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-15T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%7D 
+ path_url=/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-03T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-15T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%7D 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230804 11:29:22.672" level="INFO">GET Response : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-03T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-15T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%7D 
+ status=204, reason=NO CONTENT 
+ headers={'Server': 'nginx/1.25.1', 'Date': 'Fri, 04 Aug 2023 09:29:22 GMT', 'Content-Type': 'application/json', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230804 11:29:22.673" level="INFO">${resp} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20230804 11:29:22.654" endtime="20230804 11:29:22.673"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="PASS" starttime="20230804 11:29:22.673" endtime="20230804 11:29:22.673"/>
+</return>
+<msg timestamp="20230804 11:29:22.676" level="INFO">${resp} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20230804 11:29:22.651" endtime="20230804 11:29:22.677"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230804 11:29:22.681" level="INFO">${status_code} = 204</msg>
+<status status="PASS" starttime="20230804 11:29:22.679" endtime="20230804 11:29:22.681"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>204</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230804 11:29:22.685" endtime="20230804 11:29:22.686"/>
+</kw>
+<tag>Get</tag>
+<status status="PASS" starttime="20230804 11:29:22.644" endtime="20230804 11:29:22.687"/>
+</test>
+<test id="s1-t3" name="Get_Analytics_LOAD_LEVEL_INFORMATION_Snssais" line="32">
+<kw name="Get Endpoint From Dict" library="helpers">
+<var>${params}</var>
+<arg>event=LOAD_LEVEL_INFORMATION</arg>
+<arg>ana_req={"startTs": "2023-06-01T00:00:00.000Z", "endTs": "2023-06-30T00:00:00.000Z"}</arg>
+<arg>event_filter={"snssais":[{"sst":102,"sd":"abcdef"}, "anySlice":true]}</arg>
+<msg timestamp="20230804 11:29:22.693" level="INFO">${params} = /nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%...</msg>
+<status status="PASS" starttime="20230804 11:29:22.691" endtime="20230804 11:29:22.693"/>
+</kw>
+<kw name="Get Request Analytics" library="basicRequests">
+<var>${resp}</var>
+<arg>${params}</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>apisession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230804 11:29:22.698" level="INFO">Creating Session using : alias=apisession, url=http://localhost:8080, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230804 11:29:22.698" endtime="20230804 11:29:22.698"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>apisession</arg>
+<arg>${endpoint}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230804 11:29:22.747" level="INFO">GET Request : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22snssais%22%3A%5B%7B%22sst%22%3A102%2C%22sd%22%3A%22abcdef%22%7D%2C%20%22anySlice%22%3Atrue%5D%7D 
+ path_url=/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22snssais%22%3A%5B%7B%22sst%22%3A102%2C%22sd%22%3A%22abcdef%22%7D%2C%20%22anySlice%22%3Atrue%5D%7D 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230804 11:29:22.773" level="INFO">GET Response : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22snssais%22%3A%5B%7B%22sst%22%3A102%2C%22sd%22%3A%22abcdef%22%7D%2C%20%22anySlice%22%3Atrue%5D%7D 
+ status=500, reason=INTERNAL SERVER ERROR 
+ headers={'Server': 'nginx/1.25.1', 'Date': 'Fri, 04 Aug 2023 09:29:22 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '27387', 'Connection': 'keep-alive'} 
+ body=&lt;!doctype html&gt;
+&lt;html lang=en&gt;
+  &lt;head&gt;
+    &lt;title&gt;json.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 50 (char 49)
+ // Werkzeug Debugger&lt;/title&gt;
+    &lt;link rel="stylesheet" href="?__debugger__=yes&amp;amp;cmd=resource&amp;amp;f=style.css"&gt;
+    &lt;link rel="shortcut icon"
+        href="?__debugger__=yes&amp;amp;cmd=resource&amp;amp;f=console.png"&gt;
+    &lt;script src="?__debugger__=yes&amp;amp;cmd=resource&amp;amp;f=debugger.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "aYOn1SoHgAC4hUnZsvzp";
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body style="background-color: #fff"&gt;
+    &lt;div class="debugger"&gt;
+&lt;h1&gt;JSONDecodeError&lt;/h1&gt;
+&lt;div class="detail"&gt;
+  &lt;p class="errormsg"&gt;json.decoder.JSONDecodeError: Expecting &amp;#39;,&amp;#39; delimiter: line 1 column 50 (char 49)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 class="traceback"&gt;Traceback &lt;em&gt;(most recent call last)&lt;/em&gt;&lt;/h2&gt;
+&lt;div class="traceback"&gt;
+  &lt;h3&gt;&lt;/h3&gt;
+  &lt;ul&gt;&lt;li&gt;&lt;div class="frame" id="frame-140634402022176"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/flask/app.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;2095&lt;/em&gt;,
+      in &lt;code class="function"&gt;__call__&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;    &lt;/span&gt;def __call__(self, environ: dict, start_response: t.Callable) -&amp;gt; t.Any:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;&amp;#34;&amp;#34;&amp;#34;The WSGI server calls the Flask application object as the&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;WSGI application. This calls :meth:`wsgi_app`, which can be&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;wrapped to apply middleware.&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;return self.wsgi_app(environ, start_response)
+&lt;span class="ws"&gt;        &lt;/span&gt;       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;li&gt;&lt;div class="frame" id="frame-140634402021312"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/flask/app.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;2080&lt;/em&gt;,
+      in &lt;code class="function"&gt;wsgi_app&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;try:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;ctx.push()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;response = self.full_dispatch_request()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;except Exception as e:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;error = e&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;response = self.handle_exception(e)
+&lt;span class="ws"&gt;                &lt;/span&gt;           ^^^^^^^^^^^^^^^^^^^^^^^^&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;except:  # noqa: B001&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;error = sys.exc_info()[1]&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;raise&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;return response(environ, start_response)&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;finally:&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;li&gt;&lt;div class="frame" id="frame-140634402021600"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/flask/app.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;2077&lt;/em&gt;,
+      in &lt;code class="function"&gt;wsgi_app&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;ctx = self.request_context(environ)&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;error: t.Optional[BaseException] = None&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;try:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;try:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;ctx.push()&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;response = self.full_dispatch_request()
+&lt;span class="ws"&gt;                &lt;/span&gt;           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;except Exception as e:&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;error = e&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;response = self.handle_exception(e)&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;except:  # noqa: B001&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;error = sys.exc_info()[1]&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;li&gt;&lt;div class="frame" id="frame-140634402021744"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/flask/app.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;1525&lt;/em&gt;,
+      in &lt;code class="function"&gt;full_dispatch_request&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;request_started.send(self)&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;rv = self.preprocess_request()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;if rv is None:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;rv = self.dispatch_request()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;except Exception as e:&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;rv = self.handle_user_exception(e)
+&lt;span class="ws"&gt;            &lt;/span&gt;     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;return self.finalize_request(rv)&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;&lt;/span&gt; &lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;    &lt;/span&gt;def finalize_request(&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;self,&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;rv: t.Union[ResponseReturnValue, HTTPException],&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;li&gt;&lt;div class="frame" id="frame-140634402021888"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/flask/app.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;1523&lt;/em&gt;,
+      in &lt;code class="function"&gt;full_dispatch_request&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;self.try_trigger_before_first_request_functions()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;try:&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;request_started.send(self)&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;rv = self.preprocess_request()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;if rv is None:&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;rv = self.dispatch_request()
+&lt;span class="ws"&gt;                &lt;/span&gt;     ^^^^^^^^^^^^^^^^^^^^^^^&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;except Exception as e:&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;rv = self.handle_user_exception(e)&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;return self.finalize_request(rv)&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;&lt;/span&gt; &lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;    &lt;/span&gt;def finalize_request(&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;li&gt;&lt;div class="frame" id="frame-140634402022032"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/flask/app.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;1509&lt;/em&gt;,
+      in &lt;code class="function"&gt;dispatch_request&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;getattr(rule, &amp;#34;provide_automatic_options&amp;#34;, False)&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;and req.method == &amp;#34;OPTIONS&amp;#34;&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;):&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;return self.make_default_options_response()&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;# otherwise dispatch to the handler for that endpoint&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+&lt;span class="ws"&gt;        &lt;/span&gt;       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;&lt;/span&gt; &lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;    &lt;/span&gt;def full_dispatch_request(self) -&amp;gt; Response:&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;&amp;#34;&amp;#34;&amp;#34;Dispatches the request and on top of that performs request&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;pre and postprocessing as well as HTTP exception catching and&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;error handling.&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;li&gt;&lt;div class="frame" id="frame-140634402021456"&gt;
+  &lt;h4&gt;File &lt;cite class="filename"&gt;"/usr/local/lib/python3.11/site-packages/connexion/decorators/decorator.py"&lt;/cite&gt;,
+      line &lt;em class="line"&gt;68&lt;/em&gt;,
+      in &lt;code class="function"&gt;wrapper&lt;/code&gt;&lt;/h4&gt;
+  &lt;div class="source library"&gt;&lt;pre class="line before"&gt;&lt;span class="ws"&gt;&lt;/span&gt; &lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;        &lt;/span&gt;else:  # pragma: no cover&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;@functools.wraps(function)&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;            &lt;/span&gt;def wrapper(*args, **kwargs):&lt;/pre&gt;
+&lt;pre class="line before"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;request = self.api.get_request(*args, **kwargs)&lt;/pre&gt;
+&lt;pre class="line current"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;response = function(request)
+&lt;span class="ws"&gt;                &lt;/span&gt;           ^^^^^^^^^^^^^^^^^&lt;/pre&gt;
+&lt;pre class="line after"&gt;&lt;span class="ws"&gt;                &lt;/span&gt;return self.api.get_response(response, self.mimetype, request)&lt;/pre&gt;
+&lt;pre class="line after"... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20230804 11:29:22.775" level="FAIL">HTTPError: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22snssais%22%3A%5B%7B%22sst%22%3A102%2C%22sd%22%3A%22abcdef%22%7D%2C%20%22anySlice%22%3Atrue%5D%7D</msg>
+<status status="FAIL" starttime="20230804 11:29:22.699" endtime="20230804 11:29:22.787"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" starttime="20230804 11:29:22.787" endtime="20230804 11:29:22.787"/>
+</return>
+<status status="FAIL" starttime="20230804 11:29:22.697" endtime="20230804 11:29:22.788"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20230804 11:29:22.789" endtime="20230804 11:29:22.789"/>
+</kw>
+<kw name="Check Result" library="helpers">
+<var>${status}</var>
+<arg>${resp}</arg>
+<status status="NOT RUN" starttime="20230804 11:29:22.790" endtime="20230804 11:29:22.790"/>
+</kw>
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${resp.json()["sliceLoadLevelInfos"]}</arg>
+<arg>1</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<status status="NOT RUN" starttime="20230804 11:29:22.791" endtime="20230804 11:29:22.792"/>
+</kw>
+<tag>Get</tag>
+<status status="FAIL" starttime="20230804 11:29:22.690" endtime="20230804 11:29:22.793">HTTPError: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22snssais%22%3A%5B%7B%22sst%22%3A102%2C%22sd%22%3A%22abcdef%22%7D%2C%20%22anySlice%22%3Atrue%5D%7D</status>
+</test>
+<test id="s1-t4" name="Get_Analytics_LOAD_LEVEL_INFORMATION_DATES_AnySlice_False" line="42">
+<kw name="Get Endpoint From Dict" library="helpers">
+<var>${params}</var>
+<arg>event=LOAD_LEVEL_INFORMATION</arg>
+<arg>ana_req={"startTs": "2023-06-01T00:00:00.000Z", "endTs": "2023-06-30T00:00:00.000Z"}</arg>
+<arg>event_filter={"anySlice":false}</arg>
+<msg timestamp="20230804 11:29:22.797" level="INFO">${params} = /nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%...</msg>
+<status status="PASS" starttime="20230804 11:29:22.797" endtime="20230804 11:29:22.797"/>
+</kw>
+<kw name="Run Keyword And Expect Error" library="BuiltIn">
+<arg>HTTPError: 500*</arg>
+<arg>Get Request Analytics</arg>
+<arg>${params}</arg>
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<kw name="Get Request Analytics" library="basicRequests">
+<arg>${params}</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>apisession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230804 11:29:22.804" level="INFO">Creating Session using : alias=apisession, url=http://localhost:8080, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230804 11:29:22.804" endtime="20230804 11:29:22.805"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>apisession</arg>
+<arg>${endpoint}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230804 11:29:22.824" level="INFO">GET Request : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22anySlice%22%3Afalse%7D 
+ path_url=/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22anySlice%22%3Afalse%7D 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230804 11:29:22.824" level="INFO">GET Response : url=http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22anySlice%22%3Afalse%7D 
+ status=500, reason=INTERNAL SERVER ERROR 
+ headers={'Server': 'nginx/1.25.1', 'Date': 'Fri, 04 Aug 2023 09:29:22 GMT', 'Content-Type': 'application/json', 'Content-Length': '148', 'Connection': 'keep-alive'} 
+ body={"title": "Internal Server Error", "status": 500, "detail": "The necessary data to perform the service is unavailable", "cause": "UNAVAILABLE_DATA"} 
+ </msg>
+<msg timestamp="20230804 11:29:22.825" level="FAIL">HTTPError: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&amp;ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&amp;tgt-ue=%7B%7D&amp;event-filter=%7B%22anySlice%22%3Afalse%7D</msg>
+<status status="FAIL" starttime="20230804 11:29:22.805" endtime="20230804 11:29:22.826"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" starttime="20230804 11:29:22.827" endtime="20230804 11:29:22.827"/>
+</return>
+<status status="FAIL" starttime="20230804 11:29:22.801" endtime="20230804 11:29:22.828"/>
+</kw>
+<status status="PASS" starttime="20230804 11:29:22.800" endtime="20230804 11:29:22.828"/>
+</kw>
+<tag>Get</tag>
+<status status="PASS" starttime="20230804 11:29:22.796" endtime="20230804 11:29:22.829"/>
+</test>
+<status status="FAIL" starttime="20230804 11:29:22.110" endtime="20230804 11:29:22.833"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="3" fail="1" skip="0">Get</stat>
+</tag>
+<suite>
+<stat pass="3" fail="1" skip="0" id="s1" name="Analytics">Analytics</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

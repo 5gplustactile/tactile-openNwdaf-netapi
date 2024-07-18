@@ -1,0 +1,12 @@
+{
+    "mLEventSubscs":[
+        {
+            "mLEvent":"SLICE_LOAD_LEVEL",
+            "mLEventFilter":{
+                "anySlice":true
+            }
+        }
+    ],
+    "notifUri":"notiUri2"
+
+}

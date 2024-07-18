@@ -1,0 +1,75 @@
+
+
+
+
+Tests EventsSubscription:
+
+    - Analytics Subscription
+
+        CREATE Subscripcion sub2.json
+        curl -X POST -H "Content-Type: application/json" -d @./tests/curl/Events_Subscription_json/sub2.json http://localhost:8080/nnwdaf-eventssubscription/v1/subscriptions
+        
+        <subscriptio_id> in response headers
+
+        DELETE Subscripcion
+        curl -X DELETE http://localhost:8080/nnwdaf-eventssubscription/v1/subscriptions/<subscription_id>
+
+        UPDATE Subscripcion   sub2.json -> sub.json
+        curl -X PUT -H "Content-Type: application/json" -d @./tests/curl/Events_Subscription_json/sub.json http://localhost:8080/nnwdaf-eventssubscription/v1/subscriptions/<subscription_id>
+
+
+    - Transfer Subscription
+
+        CREATE Subscription transfer
+        curl -X POST -H "Content-Type: application/json" -d @./tests/curl/Events_Subscription_json/transfer.json http://localhost:8080/nnwdaf-eventssubscription/v1/transfers
+
+        <subscriptio_id> in response headers
+
+        DELETE Subscription
+        curl -X DELETE http://localhost:8080/nnwdaf-eventssubscription/v1/transfers/<subscription_id>
+
+        UPDATE Subscription   transfer.json -> transfer2.json
+        curl -X PUT -H "Content-Type: application/json" -d @./tests/curl/Events_Subscription_json/transfer2.json http://localhost:8080/nnwdaf-eventssubscription/v1/transfers/<subscription_id>
+
+
+Tests ML_Model_Provision
+
+    CREATE Subscription sub
+    curl -X POST -H "Content-Type: application/json" -d @./tests/curl/ML_Model_Provision_jsons/sub.json http://localhost:8080/nnwdaf-mlmodelprovision/v1/subscriptions
+  
+    <subscriptio_id> in response headers
+
+    DELETE Subscription
+    curl -X DELETE http://localhost:8080/nnwdaf-mlmodelprovision/v1/subscriptions/<subscription_id>
+
+    UPDATE Subscription     sub.json -> sub2.json
+    curl -X PUT -H "Content-Type: application/json" -d @./tests/curl/ML_Model_Provision_jsons/sub2.json http://localhost:8080/nnwdaf-mlmodelprovision/v1/subscriptions/<subscription_id>
+
+
+Tests Data_Management
+    
+    CREATE Subscription sub
+    curl -X POST -H "Content-Type: application/json" -d @./tests/curl/Data_Management_jsons/sub.json http://localhost:8080/nnwdaf-datamanagement/v1/subscriptions
+
+    DELETE Subscription
+    curl -X DELETE http://localhost:8080/nnwdaf-datamanagement/v1/subscriptions/<subscription_id>
+
+    UPDATE Subscription     sub.json -> sub2.json
+    curl -X PUT -H "Content-Type: application/json" -d @./tests/curl/Data_Management_jsons/sub2.json http://localhost:8080/nnwdaf-datamanagement/v1/subscriptions/<subscription_id>
+
+Tests Analytics_Info
+
+    GET Analytics
+    curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=LOAD_LEVEL_INFORMATION&ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-30T00%3A00%3A00.000Z%22%7D&tgt-ue=%7B%7D&event-filter=%7B%22anySlice%22%3A%20true%7D'
+
+    GET QOS_SUSTAINABILITY 5QI
+    curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=QOS_SUSTAINABILITY&ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-20T00%3A00%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%22networkArea%22%3A%20%7B%22tais%22%3A%20%5B%7B%22plmnId%22%3A%20%7B%22mcc%22%3A%20%22456%22%2C%20%22mnc%22%3A%20%22123%22%7D%2C%20%22tac%22%3A%20%22ab12%22%2C%20%22nid%22%3A%20%22abcde123456%22%7D%5D%7D%2C%20%22qosRequ%22%3A%20%7B%225qi%22%3A%202%7D%7D'
+
+    GET QOS_SUSTAINABILITY ResType
+    curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=QOS_SUSTAINABILITY&ana-req=%7B%22startTs%22%3A%20%222023-06-03T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-20T00%3A00%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%22networkArea%22%3A%20%7B%22tais%22%3A%20%5B%7B%22plmnId%22%3A%20%7B%22mcc%22%3A%20%22456%22%2C%20%22mnc%22%3A%20%22123%22%7D%2C%20%22tac%22%3A%20%22ab12%22%2C%20%22nid%22%3A%20%22abcde123456%22%7D%5D%7D%2C%20%22qosRequ%22%3A%20%7B%22res_type%22%3A%20%22NON_GBR%22%2C%20%22pdb%22%3A%20100%2C%20%22per%22%3A%20%221E-1%22%7D%7D'
+
+    GET NF_LOAD
+    curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22startTs%22%3A%20%222023-06-01T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-03T00%3A00%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%7D'
+
+    GET NETWORK_PERFORMANCE
+    curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NETWORK_PERFORMANCE&ana-req=%7B%22startTs%22%3A%20%222023-06-02T00%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-06-04T00%3A00%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%22nwPerfTypes%22%3A%20%5B%22GNB_ACTIVE_RATIO%22%5D%7D'
