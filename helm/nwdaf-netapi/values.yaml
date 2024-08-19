@@ -4,12 +4,14 @@
 
 analytics_info:
   enabled: true
+  replicaCount: 0
 
 data_management:
   enabled: true
 
 events_subscription:
   enabled: true
+  replicaCount: 0
 
 ml_model_provisioning:
   enabled: true
