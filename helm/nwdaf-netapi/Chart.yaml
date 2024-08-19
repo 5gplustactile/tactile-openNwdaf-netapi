@@ -24,7 +24,7 @@ version: 0.1.0
 appVersion: "0.0.1"
 
 dependencies:
-  - name: analytics_info
+  - name: analytics-info
     version: "*"
     condition: analytics_info.enabled
   - name: data_management
