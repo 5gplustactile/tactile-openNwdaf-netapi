@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "events_subscription.fullname" . }}
+  name: {{ include "events-subscription.fullname" . }}
   labels:
-    {{- include "events_subscription.labels" . | nindent 4 }}
+    {{- include "events-subscription.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "events_subscription.fullname" . }}
+    name: {{ include "events-subscription.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

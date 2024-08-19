@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "events_subscription.fullname" . }}
+  name: {{ include "events-subscription.fullname" . }}
   labels:
-    {{- include "events_subscription.labels" . | nindent 4 }}
+    {{- include "events-subscription.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "events_subscription.selectorLabels" . | nindent 6 }}
+      {{- include "events-subscription.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "events_subscription.labels" . | nindent 8 }}
+        {{- include "events-subscription.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "events_subscription.serviceAccountName" . }}
+      serviceAccountName: {{ include "events-subscription.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

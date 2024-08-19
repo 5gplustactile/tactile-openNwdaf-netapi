@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "ml_model_provisioning.name" -}}
+{{- define "ml-model-provisioning.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "ml_model_provisioning.fullname" -}}
+{{- define "ml-model-provisioning.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "ml_model_provisioning.chart" -}}
+{{- define "ml-model-provisioning.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "ml_model_provisioning.labels" -}}
-helm.sh/chart: {{ include "ml_model_provisioning.chart" . }}
-{{ include "ml_model_provisioning.selectorLabels" . }}
+{{- define "ml-model-provisioning.labels" -}}
+helm.sh/chart: {{ include "ml-model-provisioning.chart" . }}
+{{ include "ml-model-provisioning.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "ml_model_provisioning.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "ml_model_provisioning.name" . }}
+{{- define "ml-model-provisioning.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ml-model-provisioning.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "ml_model_provisioning.serviceAccountName" -}}
+{{- define "ml-model-provisioning.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "ml_model_provisioning.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ml-model-provisioning.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

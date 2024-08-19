@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "events_subscription.name" -}}
+{{- define "events-subscription.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "events_subscription.fullname" -}}
+{{- define "events-subscription.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "events_subscription.chart" -}}
+{{- define "events-subscription.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "events_subscription.labels" -}}
-helm.sh/chart: {{ include "events_subscription.chart" . }}
-{{ include "events_subscription.selectorLabels" . }}
+{{- define "events-subscription.labels" -}}
+helm.sh/chart: {{ include "events-subscription.chart" . }}
+{{ include "events-subscription.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "events_subscription.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "events_subscription.name" . }}
+{{- define "events-subscription.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "events-subscription.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "events_subscription.serviceAccountName" -}}
+{{- define "events-subscription.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "events_subscription.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "events-subscription.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
