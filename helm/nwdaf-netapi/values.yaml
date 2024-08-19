@@ -6,7 +6,7 @@ analytics_info:
   enabled: true
 
 data_management:
-  enabled: false
+  enabled: true
 
 events_subscription:
   enabled: false
