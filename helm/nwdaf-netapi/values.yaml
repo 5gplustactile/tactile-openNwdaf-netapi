@@ -2,18 +2,18 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-analytics_info:
+analytics-info:
   enabled: true
   replicaCount: 0
 
-data_management:
+data-management:
   enabled: true
 
-events_subscription:
+events-subscription:
   enabled: true
   replicaCount: 0
 
-ml_model_provisioning:
+ml-model-provisioning:
   enabled: true
 
 mongo:

@@ -26,16 +26,16 @@ appVersion: "0.0.1"
 dependencies:
   - name: analytics-info
     version: "*"
-    condition: analytics_info.enabled
+    condition: analytics-info.enabled
   - name: data-management
     version: "*"
-    condition: data_management.enabled
+    condition: data-management.enabled
   - name: events-subscription
     version: "*"
-    condition: events_subscription.enabled
+    condition: events-subscription.enabled
   - name: ml-model-provisioning
     version: "*"
-    condition: ml_model_provisioning.enabled
+    condition: ml-model-provisioning.enabled
   - name: mongo
     version: "*"
     condition: mongo.enabled
