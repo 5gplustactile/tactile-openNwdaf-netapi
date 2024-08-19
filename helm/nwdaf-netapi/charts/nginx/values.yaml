@@ -21,7 +21,7 @@ env:
 configMap:
   uriEventSubscription: http://events-subs:8080
   uriDataManagement: http://data-mgmt:8080
-  uriMlModelProvisioning: http://ml_model_provisioning:8080
+  uriMlModelProvisioning: http://ml-model-provisioning:8080
   uriAnalyticsInfo: http://analytics-info:8080
 
 serviceAccount:

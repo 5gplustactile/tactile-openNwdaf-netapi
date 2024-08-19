@@ -92,7 +92,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  name: ml_model_provisioning
+  name: ml-model-provisioning
   type: ClusterIP
   port: 8080
 
