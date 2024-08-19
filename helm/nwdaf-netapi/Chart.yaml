@@ -27,7 +27,7 @@ dependencies:
   - name: analytics-info
     version: "*"
     condition: analytics_info.enabled
-  - name: data_management
+  - name: data-management
     version: "*"
     condition: data_management.enabled
   - name: events_subscription
