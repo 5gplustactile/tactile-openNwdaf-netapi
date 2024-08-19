@@ -30,10 +30,10 @@ dependencies:
   - name: data-management
     version: "*"
     condition: data_management.enabled
-  - name: events_subscription
+  - name: events-subscription
     version: "*"
     condition: events_subscription.enabled
-  - name: ml_model_provisioning
+  - name: ml-model-provisioning
     version: "*"
     condition: ml_model_provisioning.enabled
   - name: mongo

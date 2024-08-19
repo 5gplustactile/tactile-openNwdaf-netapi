@@ -9,16 +9,16 @@ data_management:
   enabled: true
 
 events_subscription:
-  enabled: false
+  enabled: true
 
 ml_model_provisioning:
-  enabled: false
+  enabled: true
 
 mongo:
-  enabled: false
+  enabled: true
 
 mongo-express:
-  enabled: false
+  enabled: true
 
 nginx:
-  enabled: false
+  enabled: true
