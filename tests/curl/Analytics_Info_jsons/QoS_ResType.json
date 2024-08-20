@@ -1,9 +1,0 @@
-{
-    "event-id":"QOS_SUSTAINABILITY",
-    "ana-req":{"startTs": "2023-04-23T06:00:00.000Z", "endTs": "2023-04-23T07:00:00.000Z"},
-    "tgt-ue":{"anyUe": true},
-    "event-filter":{
-        "networkArea":{"ecgis":[{"plmnId":{"mcc":"214", "mnc":"07"}, "eutraCellId":"0000001"}, {"plmnId":{"mcc":"214", "mnc":"07"}, "eutraCellId":"0000002"},{"plmnId":{"mcc":"214", "mnc":"07"}, "eutraCellId":"0000003"}  ]},
-        "qosRequ":{"resType": "NON_GBR", "gfbrDl": "100 Mbps"}
-    }
-}
