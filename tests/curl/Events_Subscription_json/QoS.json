@@ -1,0 +1,19 @@
+{
+    "notificationURI": "http://10.17.173.87:2222",
+    "eventSubscriptions":[
+        {
+            "event": "QOS_SUSTAINABILITY",
+            "notificationMethod": "PERIODIC",
+            "repetitionPeriod": 10,
+            "networkArea": 
+            {
+                "ecgis":[
+                    {"plmnId":{"mcc":"214", "mnc":"07"},"eutraCellId":"0000001"}
+                ]
+            },
+            "tgtUe":{"anyUe": true},
+            "qosRequ":{"5qi":2}
+
+        }
+    ]
+}

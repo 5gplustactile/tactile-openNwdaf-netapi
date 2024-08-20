@@ -1,0 +1,9 @@
+{
+    "event-id":"QOS_SUSTAINABILITY",
+    "ana-req":{"startTs": "2025-03-11T00:23:00.000Z", "endTs": "2025-03-12T00:00:00.000Z"},
+    "tgt-ue":{"anyUe": true},
+    "event-filter":{
+        "networkArea":{"ecgis":[{"plmnId":{"mcc":"214", "mnc":"07"}, "eutraCellId":"0000001"}]},
+        "qosRequ":{"5qi":2}
+    }
+}

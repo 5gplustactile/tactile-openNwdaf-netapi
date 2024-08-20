@@ -1,0 +1,19 @@
+{
+    "notificationURI": "http://192.168.100.7:2222",
+    "eventSubscriptions":[
+        {
+            "event": "NF_LOAD",
+            "notificationMethod": "PERIODIC",
+            "repetitionPeriod": 10,
+            "networkArea": 
+            {
+                "ecgis":[
+                    {"plmnId":{"mcc":"456", "mnc":"123"},"eutraCellId":"abc1234", "nid": "abcde123456"}
+                ]
+            },
+            "tgtUe":{"anyUe": true},
+            "nfTypes":["UPF2", "SMF", "AMF"]
+
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "mLEventSubscs":[
+        {
+            "mLEvent":"SLICE_LOAD_LEVEL",
+            "mLEventFilter":{
+                "anySlice":true
+            }
+        }
+    ],
+    "notifUri":"http://10.95.44.76:2222",
+    "eventReq":{
+        "notifMethod":"PERIODIC",
+        "repPeriod":10
+    }
+
+}

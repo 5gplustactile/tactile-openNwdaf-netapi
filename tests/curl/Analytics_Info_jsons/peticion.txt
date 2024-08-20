@@ -1,0 +1,33 @@
+event-id=NF_LOAD
+&
+ana-req={"accuracy": "LOW", "startTs": "2023-07-11T12:00:00.000Z", "endTs": "2023-07-31T12:10:00.000Z"}
+&
+tgt-ue={"supis": ["4561230000000000"]}
+&
+event-filter={"snssais":[{"sst":"101","sd":"abcdef"}]}
+
+SLICE_LOAD_INFORMATION
+Prueba por ventana
+
+NF_LOAD
+Prueba por ventana:
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22accuracy%22%3A%20%22LOW%22%2C%20%22startTs%22%3A%20%222023-07-05T12%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.000Z%22%7D'
+
+Prueba con supis
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22accuracy%22%3A%20%22LOW%22%2C%20%22startTs%22%3A%20%222023-07-5T12%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.000Z%22%7D&tgt-ue=%7B%22supis%22%3A%20%5B%224561230000000000%22%5D%7D'
+
+Prueba con anyUe true
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22accuracy%22%3A%20%22LOW%22%2C%20%22startTs%22%3A%20%222023-07-5T12%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D'
+
+prueba con anyue true y nf_instance_ids
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22accuracy%22%3A%20%22LOW%22%2C%20%22startTs%22%3A%20%222023-07-5T12%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%22nfInstanceIds%22%3A%5B%22c5262086-670d-4a4c-bc65-f32c25da1514%22%5D%7D'
+
+Prueba con anyue y nfSetIds
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22accuracy%22%3A%20%22LOW%22%2C%20%22startTs%22%3A%20%222023-07-5T12%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%22nfSetIds%22%3A%5B%22setxyz.nrfset.5gc.mnc123.mcc456%22%5D%7D'
+
+Prueba con nfType
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22accuracy%22%3A%20%22LOW%22%2C%20%22startTs%22%3A%20%222023-07-5T12%3A00%3A00.000Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.000Z%22%7D&tgt-ue=%7B%22anyUe%22%3A%20true%7D&event-filter=%7B%22nfTypes%22%3A%5B%22NRF%22%5D%7D'
+
+Prueba con snssais
+curl -X GET 'http://localhost:8080/nnwdaf-analyticsinfo/v1/analytics?event-id=NF_LOAD&ana-req=%7B%22startTs%22%3A%20%222023-07-11T12%3A00%3A00.00Z%22%2C%20%22endTs%22%3A%20%222023-07-31T12%3A10%3A00.00Z%22%7D&event-filter=%7B%22snssais%22%3A%20%5B%7B%22sst%22%3A%20%22101%22%2C%20%22sd%22%3A%20%22abcdef%22%7D%5D%7D'
+

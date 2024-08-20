@@ -1,0 +1,8 @@
+{
+    "event-id":"NETWORK_PERFORMANCE",
+    "ana-req":{"startTs": "2023-06-02T00:00:00.000Z", "endTs": "2023-06-04T00:00:00.000Z"},
+    "tgt-ue":{"anyUe": true},
+    "event-filter":{
+        "nwPerfTypes":["GNB_ACTIVE_RATIO"]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "notifCorrId":"notif",
+    "notificURI":"noti2",
+    "anaSub":{
+        "eventSubscriptions":[
+            {
+                "event":"SLICE_LOAD_LEVEL"
+            }
+        ]
+    }
+}
