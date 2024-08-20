@@ -15,7 +15,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 env:
-  mongoInitdbRootPassword: y9NoaCU3iWS!Cf2mbWKyG$
+  mongoInitdbRootPassword: example
   mongoInitdbRootUsername: naas_nwdaf_admin
 
 serviceAccount:
