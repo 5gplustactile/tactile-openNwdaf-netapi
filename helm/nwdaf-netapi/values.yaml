@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 analytics-info:
-  enabled: false
+  enabled: true
   replicaCount: 1
   image:
     repository: dockerhub.mobilesandbox.cloud:9443/tactile5g/analytics_info
