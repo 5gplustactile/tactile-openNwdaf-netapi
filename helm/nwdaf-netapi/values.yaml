@@ -5,6 +5,11 @@
 analytics-info:
   enabled: true
   replicaCount: 1
+  image:
+    repository: dockerhub.mobilesandbox.cloud:9443/tactile5g/analytics_info
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "0.0.2"
 
 data-management:
   enabled: true
@@ -12,6 +17,11 @@ data-management:
 events-subscription:
   enabled: true
   replicaCount: 1
+  image:
+    repository: dockerhub.mobilesandbox.cloud:9443/tactile5g/events_subs
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "0.0.2"
 
 ml-model-provisioning:
   enabled: true
