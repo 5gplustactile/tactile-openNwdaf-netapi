@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 analytics-info:
-  enabled: false
+  enabled: true
   replicaCount: 1
   image:
     repository: dockerhub.mobilesandbox.cloud:9443/tactile5g/analytics_info
@@ -12,10 +12,10 @@ analytics-info:
     tag: "0.0.2"
 
 data-management:
-  enabled: false
+  enabled: true
 
 events-subscription:
-  enabled: false
+  enabled: true
   replicaCount: 1
   image:
     repository: dockerhub.mobilesandbox.cloud:9443/tactile5g/events_subs
@@ -24,14 +24,14 @@ events-subscription:
     tag: "0.0.2"
 
 ml-model-provisioning:
-  enabled: false
+  enabled: true
 
 mongo:
-  enabled: false
+  enabled: true
 
 mongo-express:
-  enabled: false
+  enabled: true
   replicaCount: 1
 
 nginx:
-  enabled: false
+  enabled: true
