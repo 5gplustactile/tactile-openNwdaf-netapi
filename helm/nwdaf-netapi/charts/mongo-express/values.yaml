@@ -19,7 +19,7 @@ fullnameOverride: ""
 env:
 
   meConfigMongodbAdminusername: naas_nwdaf_admin
-  meConfigMongodbAdminpassword: "y9NoaCU3iWS!Cf2mbWKyG$"
+  meConfigMongodbAdminpassword: y9NoaCU3iWS!Cf2mbWKyG$
   meConfigMongodbUrl: mongodb://naas_nwdaf_admin:y9NoaCU3iWS!Cf2mbWKyG$@mongo:27017/
 serviceAccount:
   # Specifies whether a service account should be created
