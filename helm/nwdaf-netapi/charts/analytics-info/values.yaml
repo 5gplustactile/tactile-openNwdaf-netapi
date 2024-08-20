@@ -124,7 +124,7 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-livenessProbe: {} 
+livenessProbe: {}
 #  tcpSocket:
 #    port: 8080
 #  initialDelaySeconds: 20
