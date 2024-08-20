@@ -124,12 +124,12 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-livenessProbe: []
+livenessProbe: {} 
 #  tcpSocket:
 #    port: 8080
 #  initialDelaySeconds: 20
 #  periodSeconds: 5
-readinessProbe: []
+readinessProbe: {}
 #  tcpSocket:
 #    port: 8080
 #  initialDelaySeconds: 20
