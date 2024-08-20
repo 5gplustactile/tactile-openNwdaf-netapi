@@ -27,7 +27,7 @@ ml-model-provisioning:
   enabled: true
 
 mongo:
-  enabled: false
+  enabled: true
 
 mongo-express:
   enabled: true
