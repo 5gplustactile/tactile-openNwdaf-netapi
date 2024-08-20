@@ -124,16 +124,16 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-livenessProbe:
-  tcpSocket:
-    port: 8080
-  initialDelaySeconds: 20
-  periodSeconds: 5
-readinessProbe:
-  tcpSocket:
-    port: 8080
-  initialDelaySeconds: 20
-  periodSeconds: 5
+livenessProbe: {}
+#  tcpSocket:
+#    port: 8080
+#  initialDelaySeconds: 20
+#  periodSeconds: 5
+readinessProbe: {}
+#  tcpSocket:
+#    port: 8080
+#  initialDelaySeconds: 20
+#  periodSeconds: 5
 
 autoscaling:
   enabled: false
