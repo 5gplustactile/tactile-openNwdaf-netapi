@@ -31,7 +31,7 @@ mongo:
 
 mongo-express:
   enabled: true
-  replicaCount: 0
+  replicaCount: 1
 
 nginx:
   enabled: true
