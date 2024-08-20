@@ -48,9 +48,9 @@ env:
   - name: MONGO_PASS_WEBHOOK
     value: example
   - name: MONGO_HOST_WEBHOOK
-    value: 
+    value: mongo
   - name: MONGO_PORT_WEBHOOK
-    value: 
+    value: "27017"
   - name: MONGO_DB_WEBHOOK
     value: eventDB
   - name: MONGO_CORE_ANALYTICS_COL
