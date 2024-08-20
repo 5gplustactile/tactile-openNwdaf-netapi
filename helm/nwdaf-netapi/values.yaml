@@ -15,7 +15,7 @@ data-management:
   enabled: false
 
 events-subscription:
-  enabled: true
+  enabled: false
   replicaCount: 1
   image:
     repository: dockerhub.mobilesandbox.cloud:9443/tactile5g/events_subs
