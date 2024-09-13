@@ -48,7 +48,7 @@ env:
   - name: MONGO_PASS_WEBHOOK
     value: example
   - name: MONGO_HOST_WEBHOOK
-    value: nwdaf-netapi-analytics-info.nwdaf-netapi.svc.cluster.local
+    value: events-svc-mongo.events-svc.svc.cluster.local
   - name: MONGO_PORT_WEBHOOK
     value: "27017"
   - name: MONGO_DB_WEBHOOK
