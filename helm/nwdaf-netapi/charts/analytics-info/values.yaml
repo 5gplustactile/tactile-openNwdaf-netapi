@@ -52,7 +52,7 @@ env:
   - name: MONGO_PORT_WEBHOOK
     value: "27017"
   - name: MONGO_DB_WEBHOOK
-    value: eventDB
+    value: tactileDB
   - name: MONGO_CORE_ANALYTICS_COL
     value: eventsCoreAnalytics
   - name: MONGO_QOS_ANALYTICS_COL
